@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andrea Lima | Estética & Bem-Estar</title>
+    
+    <!-- Ícones (Font Awesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Fontes do Google (Playfair Display para títulos, Lato para textos) -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- VARIÁVEIS DE CORES --- */
+        :root {
+            --rosa-suave: #FCE4EC;
+            --rosa-forte: #e91e63; /* Apenas para pequenos detalhes */
+            --rosa-botao: #D81B60;
+            --verde-salvia: #C8E6C9;
+            --verde-musgo: #556B2F; /* Para texto */
+            --branco: #ffffff;
+            --off-white: #FAFAFA;
+            --texto-cinza: #555555;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--off-white);
+            color: var(--texto-cinza);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--verde-musgo);
+        }
+
+        /* --- BOTÃO FLUTUANTE DO WHATSAPP --- */
+        .btn-whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: transform 0.3s;
+            text-decoration: none;
+        }
+        
+        .btn-whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        /* --- CABEÇALHO --- */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 999;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--rosa-botao);
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--verde-musgo);
+            font-weight: 400;
+            text-transform: uppercase;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--rosa-botao);
+        }
+
+        /* --- SEÇÃO HERO (PRINCIPAL) --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.3)), 
+                        url('https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 3px rgba(255,255,255,0.8);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: var(--verde-musgo);
+            font-style: italic;
+        }
+
+        .btn-cta {
+            padding: 15px 40px;
+            background-color: var(--rosa-botao);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background 0.3s;
+            margin: 10px;
+            display: inline-block;
+        }
+
+        .btn-cta:hover {
+            background-color: var(--verde-musgo);
+        }
+
+        .btn-insta {
+            padding: 15px 40px;
+            background-color: white;
+            color: var(--rosa-botao);
+            border: 2px solid var(--rosa-botao);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            margin: 10px;
+            display: inline-block;
+        }
+
+        .btn-insta:hover {
+            background-color: var(--rosa-botao);
+            color: white;
+        }
+
+        /* --- GERAL DE SEÇÕES --- */
+        section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 60px;
+            height: 3px;
+            background-color: var(--verde-salvia);
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* --- GALERIA/TRABALHOS --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            cursor: pointer;
+            height: 300px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.9);
+            overflow: hidden;
+            width: 100%;
+            height: 0;
+            transition: .5s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .gallery-item:hover .overlay {
+            height: 100%;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .text {
+            color: var(--verde-musgo);
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .btn-small {
+            font-size: 12px;
+            padding: 8px 20px;
+            border: 1px solid var(--verde-musgo);
+            text-decoration: none;
+            color: var(--verde-musgo);
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+
+        /* --- PREÇOS --- */
+        #precos {
+            background-color: #fdfdfd;
+        }
+
+        .price-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .price-card {
+            background: white;
+            border: 1px solid var(--rosa-suave);
+            border-radius: 20px;
+            width: 300px;
+            padding: 30px;
+            text-align: center;
+            transition: 0.3s;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.02);
+        }
+
+        .price-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--verde-salvia);
+        }
+
+        .price-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .price {
+            font-size: 2rem;
+            color: var(--rosa-botao);
+            margin: 20px 0;
+            font-weight: bold;
+        }
+
+        .price-card ul {
+            list-style: none;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .price-card ul li {
+            margin-bottom: 10px;
+            color: var(--texto-cinza);
+        }
+
+        .price-card ul li i {
+            color: var(--verde-musgo);
+            margin-right: 10px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--rosa-suave);
+            color: var(--verde-musgo);
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .social-links {
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin: 0 10px;
+            color: var(--verde-musgo);
+            font-size: 24px;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--rosa-botao);
+        }
+
+        /* --- RESPONSIVIDADE --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1.1rem; }
+            nav ul { display: none; } /* Menu simples para mobile */
+            
+            .price-card { width: 100%; }
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+        }
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Cabeçalho -->
+    <header>
+        <nav>
+            <div class="logo">Andrea Lima</div>
+            <ul>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#trabalhos">Portfólio</a></li>
+                <li><a href="#precos">Preços</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero / Tela Inicial -->
+    <section class="hero">
+        <h1>Andrea Lima</h1>
+        <p>Realçando sua beleza natural com delicadeza e cuidado.</p>
+        
+        <div class="buttons-hero">
+            <a href="https://wa.me/5500999999999" target="_blank" class="btn-cta">
+                <i class="fab fa-whatsapp"></i> Agendar Agora
+            </a>
+            <a href="https://instagram.com/seunome" target="_blank" class="btn-insta">
+                <i class="fab fa-instagram"></i> Siga no Insta
+            </a>
+        </div>
+    </section>
+
+    <!-- Seção Sobre -->
+    <section id="sobre">
+        <div class="section-title">Minha Missão</div>
+        <p style="text-align: center; max-width: 700px; margin: 0 auto; line-height: 1.8; font-size: 1.1rem;">
+            Olá, sou a <strong>Andrea Lima</strong>. Minha paixão é a estética facial e corporal. Acredito que o autocuidado é um ato de amor. Meu estúdio foi projetado com cores suaves para trazer calma à sua rotina agitada, unindo técnicas modernas com um toque humanizado e delicado.
+        </p>
+    </section>
+
+    <!-- Portfólio / Trabalhos -->
+    <section id="trabalhos">
+        <h2 class="section-title">Meus Trabalhos</h2>
+        <div class="gallery-grid">
+            
+            <!-- Card 1: Skin Care -->
+            <div class="gallery-item" onclick="openModal('https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')">
+                <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Limpeza de Pele">
+                <div class="overlay">
+                    <div class="text">Limpeza de Pele</div>
+                    <span class="btn-small">Ver Detalhes</span>
+                </div>
+            </div>
+
+            <!-- Card 2: Massage -->
+            <div class="gallery-item" onclick="openModal('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')">
+                <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Massagem Relaxante">
+                <div class="overlay">
+                    <div class="text">Massagens</div>
+                    <span class="btn-small">Ver Detalhes</span>
+                </div>
+            </div>
+
+            <!-- Card 3: Lashes/Brows -->
+            <div class="gallery-item" onclick="openModal('https://images.unsplash.com/photo-1587909295560-dc9bc88d5784?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')">
+                <img src="https://images.unsplash.com/photo-1587909295560-dc9bc88d5784?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Sobrancelhas">
+                <div class="overlay">
+                    <div class="text">Design & Cílios</div>
+                    <span class="btn-small">Ver Detalhes</span>
+                </div>
+            </div>
+
+        </div>
+        <p style="text-align: center; margin-top: 20px; color: #888; font-size: 0.9rem;">*Clique nas imagens para ampliar.</p>
+    </section>
+
+    <!-- Tabela de Preços -->
+    <section id="precos">
+        <h2 class="section-title">Menu de Serviços</h2>
+        <div class="price-container">
+            
+            <!-- Plano 1 -->
+            <div class="price-card">
+                <h3>Limpeza Facial</h3>
+                <p>Para uma pele renovada</p>
+                <div class="price">R$ 120,00</div>
+                <ul>
+                    <li><i class="fas fa-check"></i> Higienização profunda</li>
+                    <li><i class="fas fa-check"></i> Extração de cravos</li>
+                    <li><i class="fas fa-check"></i> Máscara de ouro</li>
+                </ul>
+                <a href="https://wa.me/5500999999999?text=Quero agendar limpeza" class="btn-cta" style="font-size: 12px;">Agendar</a>
+            </div>
+
+            <!-- Plano 2 -->
+            <div class="price-card" style="border-color: var(--verde-musgo); background-color: #f9fcf9;">
+                <h3>Pacote Relax</h3>
+                <p>Corpo e mente leves</p>
+                <div class="price">R$ 250,00</div>
+                <ul>
+                    <li><i class="fas fa-check"></i> Drenagem Linfática</li>
+                    <li><i class="fas fa-check"></i> Massagem com pedras</li>
+                    <li><i class="fas fa-check"></i> Aromaterapia</li>
+                </ul>
+                <a href="https://wa.me/5500999999999?text=Quero pacote relax" class="btn-cta" style="font-size: 12px;">Agendar</a>
+            </div>
+
+            <!-- Plano 3 -->
+            <div class="price-card">
+                <h3>Harmonização</h3>
+                <p>Detalhes que importam</p>
+                <div class="price">R$ 80,00</div>
+                <ul>
+                    <li><i class="fas fa-check"></i> Design de Sobrancelha</li>
+                    <li><i class="fas fa-check"></i> Aplicação de Henna</li>
+                    <li><i class="fas fa-check"></i> Hidratação Labial</li>
+                </ul>
+                <a href="https://wa.me/5500999999999?text=Quero harmonização" class="btn-cta" style="font-size: 12px;">Agendar</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Botão Flutuante WhatsApp -->
+    <a href="https://wa.me/5500999999999" class="btn-whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer id="contato">
+        <h2>Andrea Lima Estética</h2>
+        <p>Rua das Flores, 123 - Centro - Sua Cidade</p>
+        
+        <div class="social-links">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="https://wa.me/5500999999999"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <p style="font-size: 12px; margin-top: 20px;">&copy; 2023 Andrea Lima. Feito com carinho.</p>
+    </footer>
+
+    <!-- Modal de Visualização de Imagem (Lightbox Simples) -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="img01">
+    </div>
+
+    <!-- JavaScript Interativo -->
+    <script>
+        // Script para "interatividade" do Portfólio
+        function openModal(imgSrc) {
+            var modal = document.getElementById("imageModal");
+            var modalImg = document.getElementById("img01");
+            modal.style.display = "flex";
+            modalImg.src = imgSrc;
+        }
+
+        function closeModal() {
+            document.getElementById("imageModal").style.display = "none";
+        }
+
+        // Animação suave ao rolar (Fade In)
+        window.addEventListener('scroll', function() {
+            var cards = document.querySelectorAll('.price-card, .gallery-item');
+            
+            cards.forEach(element => {
+                var position = element.getBoundingClientRect();
+                // Se o elemento estiver visível na janela
+                if(position.top < window.innerHeight - 50) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        // Configuração inicial de opacidade para animação
+        document.querySelectorAll('.price-card, .gallery-item').forEach(el => {
+            el.style.transition = "all 0.8s ease-out";
+            // Nota: em produção real, usaria classe 'hidden'/'visible', 
+            // mas deixei simples para funcionar ao copiar/colar.
+        });
+    </script>
+</body>
+</html>
